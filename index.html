@@ -3,11 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Archit Hulsurkar</title>
+  <title>Archit Hulsurkar | Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #CC785C;
+      --bg: #F5F5F0;
+      --text-main: #2B2826;
+      --text-muted: #706B66;
+      --text-light: #9B958F;
+      --border: #E6E3DD;
+      --container-width: 1000px;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -15,8 +25,8 @@
     }
 
     ::selection {
-      background: #CC785C;
-      color: #F5F5F0;
+      background: var(--primary);
+      color: var(--bg);
     }
 
     html {
@@ -24,38 +34,43 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: #F5F5F0;
-      color: #2B2826;
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
       color: inherit;
       text-decoration: none;
+      transition: all 0.2s ease;
     }
 
     .container {
-      max-width: 900px;
+      max-width: var(--container-width);
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 5%;
     }
 
-    /* Hero */
+    /* Hero Section - Optimized for scaling */
     .hero {
-      min-height: 100vh;
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      padding: 2rem 0;
     }
 
     .hero-image {
-      width: 120px;
-      height: 120px;
+      width: clamp(100px, 15vw, 140px);
+      height: clamp(100px, 15vw, 140px);
       border-radius: 50%;
       overflow: hidden;
-      margin-bottom: 1.5rem;
-      background: #E6E3DD;
+      margin-bottom: 2rem;
+      background: var(--border);
+      border: 4px solid white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
 
     .hero-image img {
@@ -65,277 +80,151 @@
     }
 
     .hero-name {
-      font-size: clamp(3rem, 10vw, 6rem);
+      font-size: clamp(2.5rem, 8vw, 5rem);
       font-weight: 600;
       letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 1rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
     }
 
     .hero-info {
-      font-size: 1.1rem;
-      color: #706B66;
-      margin-bottom: 0.5rem;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 600px;
     }
 
     .hero-contact {
       font-size: 0.95rem;
-      color: #9B958F;
-      margin-bottom: 2rem;
+      color: var(--text-light);
+      margin: 0.5rem 0 2.5rem 0;
     }
 
     .hero-links {
       display: flex;
+      flex-wrap: wrap;
       gap: 1.5rem;
     }
 
     .hero-links a {
-      font-size: 0.95rem;
-      color: #706B66;
-      position: relative;
-      transition: color 0.2s;
-    }
-
-    .hero-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: #CC785C;
-      transition: width 0.3s ease;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-bottom: 1px solid transparent;
     }
 
     .hero-links a:hover {
-      color: #CC785C;
+      color: var(--primary);
+      border-bottom-color: var(--primary);
     }
 
-    .hero-links a:hover::after {
-      width: 100%;
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 2rem;
-      font-size: 0.85rem;
-      color: #9B958F;
-    }
-
-    /* Sections */
+    /* Modern Section Styling */
     section {
-      padding: 5rem 0;
-      border-top: 1px solid #E6E3DD;
+      padding: clamp(4rem, 10vh, 8rem) 0;
+      border-top: 1px solid var(--border);
     }
 
     .section-title {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: #9B958F;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-light);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 2.5rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 3rem;
     }
 
-    /* Skills */
+    /* Skills Grid - Flexible Flexbox */
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.75rem;
     }
 
     .skill-tag {
       font-size: 0.85rem;
-      padding: 0.5rem 1rem;
-      background: #E9E7E3;
-      border-radius: 50px;
-      transition: all 0.2s;
+      padding: 0.6rem 1.2rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 100px;
     }
 
     .skill-tag:hover {
-      background: #CC785C;
-      color: #F5F5F0;
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-2px);
     }
 
-    /* Projects */
-    .project {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid #E6E3DD;
+    /* Projects & Experience - Improved Grid Scaling */
+    .list-item {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
       display: grid;
-      grid-template-columns: 180px 1fr auto;
-      gap: 1.5rem;
-      align-items: baseline;
-      transition: padding 0.2s ease;
+      grid-template-columns: 220px 1fr auto;
+      gap: 2rem;
+      align-items: start;
     }
 
-    .project:hover {
-      padding-left: 1rem;
+    .list-item:last-child { border-bottom: none; }
+
+    .item-title { font-weight: 600; font-size: 1.1rem; }
+    
+    .item-desc {
+      color: var(--text-muted);
+      max-width: 550px;
     }
 
-    .project:last-child {
-      border-bottom: none;
-    }
-
-    .project-name {
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    .project-desc {
-      font-size: 0.95rem;
-      color: #706B66;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-tech {
+    .item-tech {
       font-size: 0.8rem;
-      color: #9B958F;
+      color: var(--text-light);
+      margin-top: 0.75rem;
+      display: block;
     }
 
-    .project-links {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .project-links a {
-      font-size: 0.8rem;
-      color: #706B66;
-      transition: color 0.2s;
-    }
-
-    .project-links a:hover {
-      color: #CC785C;
-    }
-
-    /* Experience */
-    .exp {
-      padding: 1.25rem 0;
-      border-bottom: 1px solid #eee;
-      display: grid;
-      grid-template-columns: 180px 1fr auto;
-      gap: 1.5rem;
-      align-items: baseline;
-      transition: padding 0.2s ease;
-    }
-
-    .exp:hover {
-      padding-left: 1rem;
-    }
-
-    .exp:last-child {
-      border-bottom: none;
-    }
-
-    .exp-role {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .exp-company {
-      font-size: 0.95rem;
-      color: #706B66;
-    }
-
-    .exp-period {
+    .item-meta {
       font-size: 0.85rem;
-      color: #9B958F;
-      white-space: nowrap;
+      color: var(--text-light);
+      text-align: right;
     }
 
-    /* Contact */
+    /* Contact CTA */
     #contact {
       text-align: center;
-      padding: 6rem 0;
-    }
-
-    #contact h2 {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.02em;
-    }
-
-    #contact p {
-      color: #706B66;
-      margin-bottom: 1.5rem;
+      background: white;
+      border-radius: 24px;
+      margin-bottom: 4rem;
+      border: none;
     }
 
     .contact-btn {
       display: inline-block;
-      padding: 0.85rem 1.75rem;
-      background: #CC785C;
-      color: #F5F5F0;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border-radius: 6px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      padding: 1rem 2.5rem;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      border-radius: 12px;
+      margin-top: 2rem;
     }
 
-    .contact-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(204, 120, 92, 0.3);
-    }
-
-    /* Footer */
-    footer {
-      padding: 2rem 0;
-      border-top: 1px solid #E6E3DD;
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      color: #9B958F;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-links a {
-      color: #706B66;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover {
-      color: #CC785C;
-    }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-      .project, .exp {
+    /* Tablet & Mobile Adjustments */
+    @media (max-width: 850px) {
+      .list-item {
         grid-template-columns: 1fr;
-        gap: 0.25rem;
+        gap: 0.5rem;
       }
-
-      .exp-period, .project-links {
+      .item-meta {
+        text-align: left;
         order: -1;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-      }
-
-      .footer-links {
-        justify-content: center;
-      }
-
-      .scroll-hint {
-        display: none;
+        margin-bottom: 0.5rem;
       }
     }
   </style>
 </head>
 <body>
   <main class="container">
-    <!-- Hero -->
     <section class="hero">
       <div class="hero-image">
-        <img src="profile.png" alt="Archit Hulsurkar">
+        <img src="profile.png" alt="Archit Hulsurkar" loading="lazy">
       </div>
-      <h1 class="hero-name">Archit Hulsurkar</h1>
+      <h1 class="hero-name">Archit<br>Hulsurkar</h1>
       <p class="hero-info">CS @ CSU Monterey Bay · Expected May 2027</p>
       <p class="hero-contact">831-224-6678 · archit.3572@gmail.com</p>
       <div class="hero-links">
@@ -343,128 +232,80 @@
         <a href="https://www.linkedin.com/in/archit-hulsurkar-231023280/" target="_blank">LinkedIn</a>
         <a href="mailto:archit.3572@gmail.com">Email</a>
       </div>
-      <div class="scroll-hint">↓ Scroll</div>
     </section>
 
-    <!-- Skills -->
     <section id="skills">
-      <h2 class="section-title">Skills</h2>
+      <h2 class="section-title">Expertise</h2>
       <div class="skills-grid">
         <span class="skill-tag">Python</span>
         <span class="skill-tag">Go</span>
         <span class="skill-tag">Java</span>
         <span class="skill-tag">TypeScript</span>
-        <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">C++</span>
-        <span class="skill-tag">SQL</span>
         <span class="skill-tag">React</span>
         <span class="skill-tag">Node.js</span>
-        <span class="skill-tag">Gin</span>
-        <span class="skill-tag">Django</span>
-        <span class="skill-tag">Flask</span>
-        <span class="skill-tag">WebSocket</span>
-        <span class="skill-tag">REST APIs</span>
         <span class="skill-tag">Docker</span>
         <span class="skill-tag">AWS</span>
         <span class="skill-tag">PostgreSQL</span>
-        <span class="skill-tag">MongoDB</span>
-        <span class="skill-tag">Git</span>
         <span class="skill-tag">Gemini AI</span>
       </div>
     </section>
 
-    <!-- Projects -->
     <section id="projects">
-      <h2 class="section-title">Projects</h2>
+      <h2 class="section-title">Selected Projects</h2>
       
-      <div class="project">
-        <div class="project-name">LaTeX Accessibility Tool</div>
+      <div class="list-item">
+        <div class="item-title">LaTeX Accessibility Tool</div>
         <div>
-          <p class="project-desc">AI-powered tool using Gemini API to convert formulas into accessible LaTeX for WCAG-compliant content</p>
-          <span class="project-tech">TypeScript · Gemini AI · Node.js</span>
+          <p class="item-desc">AI-powered tool using Gemini API to convert formulas into accessible LaTeX for WCAG-compliant content.</p>
+          <span class="item-tech">TypeScript · Gemini AI · Node.js</span>
         </div>
-        <div class="project-links">
-          <a href="https://github.com/archithulsurkar" target="_blank">GitHub →</a>
+        <div class="item-meta">
+          <a href="https://github.com/archithulsurkar" target="_blank">View Project ↗</a>
         </div>
       </div>
 
-      <div class="project">
-        <div class="project-name">Shorty</div>
+      <div class="list-item">
+        <div class="item-title">Shorty</div>
         <div>
-          <p class="project-desc">RESTful URL shortening service with click tracking, statistics API, and Docker deployment</p>
-          <span class="project-tech">Go · Gin · PostgreSQL · Docker</span>
+          <p class="item-desc">RESTful URL shortening service with click tracking, statistics API, and Docker deployment.</p>
+          <span class="item-tech">Go · Gin · PostgreSQL · Docker</span>
         </div>
-        <div class="project-links">
-          <a href="https://github.com/archithulsurkar" target="_blank">GitHub →</a>
-        </div>
-      </div>
-
-      <div class="project">
-        <div class="project-name">Real-Time Chat App</div>
-        <div>
-          <p class="project-desc">Messaging app with user auth, instant messaging, and responsive UI using WebSocket</p>
-          <span class="project-tech">React · Node.js · WebSocket</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/archithulsurkar" target="_blank">GitHub →</a>
-          <a href="https://chatto-nirb.onrender.com/" target="_blank">Live →</a>
-        </div>
-      </div>
-
-      <div class="project">
-        <div class="project-name">ClassCore</div>
-        <div>
-          <p class="project-desc">Android app for tracking assignments, grades, and course materials with admin console</p>
-          <span class="project-tech">Java · Android Studio</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/archithulsurkar" target="_blank">GitHub →</a>
+        <div class="item-meta">
+          <a href="https://github.com/archithulsurkar" target="_blank">View Project ↗</a>
         </div>
       </div>
     </section>
 
-    <!-- Experience -->
     <section id="experience">
       <h2 class="section-title">Experience</h2>
 
-      <div class="exp">
-        <div class="exp-role">Student Assistant</div>
-        <div class="exp-company">Center for Academic Technologies, CSUMB</div>
-        <div class="exp-period">Nov 2025 — Present</div>
+      <div class="list-item">
+        <div class="item-title">Student Assistant</div>
+        <div class="item-desc">Center for Academic Technologies, CSUMB</div>
+        <div class="item-meta">Nov 2025 — Present</div>
       </div>
 
-      <div class="exp">
-        <div class="exp-role">Intern</div>
-        <div class="exp-company">PNT Robotics</div>
-        <div class="exp-period">Jun — Jul 2024</div>
-      </div>
-
-      <div class="exp">
-        <div class="exp-role">Cybersecurity Intern</div>
-        <div class="exp-company">Acmegrade</div>
-        <div class="exp-period">May — Jul 2024</div>
-      </div>
-
-      <div class="exp">
-        <div class="exp-role">Technical Head</div>
-        <div class="exp-company">IEEE VSIT Student Branch</div>
-        <div class="exp-period">Feb 2024 — Jul 2025</div>
+      <div class="list-item">
+        <div class="item-title">Technical Head</div>
+        <div class="item-desc">IEEE VSIT Student Branch</div>
+        <div class="item-meta">Feb 2024 — Jul 2025</div>
       </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact">
-      <h2>Let's connect</h2>
-      <p>Open to Summer 2026 internships</p>
+      <h2 style="font-size: 2rem; margin-bottom: 1rem;">Let's build something.</h2>
+      <p>Currently seeking Summer 2026 internships.</p>
       <a href="mailto:archit.3572@gmail.com" class="contact-btn">Get in touch</a>
     </section>
   </main>
 
-  <footer class="container">
-    <span>© 2024 Archit Hulsurkar</span>
-    <div class="footer-links">
-      <a href="https://github.com/archithulsurkar" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/archit-hulsurkar-231023280/" target="_blank">LinkedIn</a>
+  <footer class="container" style="padding-bottom: 4rem; color: var(--text-light); font-size: 0.85rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span>© 2025 Archit Hulsurkar</span>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="https://github.com/archithulsurkar" target="_blank">GH</a>
+        <a href="https://www.linkedin.com/in/archit-hulsurkar-231023280/" target="_blank">LI</a>
+      </div>
     </div>
   </footer>
 </body>
