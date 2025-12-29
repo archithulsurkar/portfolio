@@ -49,50 +49,44 @@
       justify-content: center;
     }
 
+    .hero-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      background: #f0f0f0;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .hero-name {
       font-size: clamp(3rem, 10vw, 6rem);
       font-weight: 600;
       letter-spacing: -0.04em;
       line-height: 1;
       margin-bottom: 1rem;
-      overflow: hidden;
-    }
-
-    .hero-name .letter {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(100%);
-      animation: revealLetter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes revealLetter {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     .hero-info {
       font-size: 1.1rem;
       color: #666;
       margin-bottom: 0.5rem;
-      opacity: 0;
-      animation: fadeIn 0.6s ease 0.8s forwards;
     }
 
     .hero-contact {
       font-size: 0.95rem;
       color: #999;
       margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeIn 0.6s ease 0.9s forwards;
     }
 
     .hero-links {
       display: flex;
       gap: 1.5rem;
-      opacity: 0;
-      animation: fadeIn 0.6s ease 1s forwards;
     }
 
     .hero-links a {
@@ -127,23 +121,6 @@
       left: 2rem;
       font-size: 0.85rem;
       color: #999;
-      opacity: 0;
-      animation: fadeIn 0.6s ease 1.2s forwards;
-    }
-
-    .scroll-hint span {
-      display: inline-block;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-6px); }
-      60% { transform: translateY(-3px); }
     }
 
     /* Sections */
@@ -166,14 +143,6 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.4s ease;
-    }
-
-    .skills-grid.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .skill-tag {
@@ -197,14 +166,7 @@
       grid-template-columns: 180px 1fr auto;
       gap: 1.5rem;
       align-items: baseline;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.4s ease, padding 0.2s ease;
-    }
-
-    .project.visible {
-      opacity: 1;
-      transform: translateY(0);
+      transition: padding 0.2s ease;
     }
 
     .project:hover {
@@ -254,14 +216,7 @@
       grid-template-columns: 180px 1fr auto;
       gap: 1.5rem;
       align-items: baseline;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.4s ease, padding 0.2s ease;
-    }
-
-    .exp.visible {
-      opacity: 1;
-      transform: translateY(0);
+      transition: padding 0.2s ease;
     }
 
     .exp:hover {
@@ -377,7 +332,10 @@
   <main class="container">
     <!-- Hero -->
     <section class="hero">
-      <h1 class="hero-name" id="name"></h1>
+      <div class="hero-image">
+        <img src="profile.png" alt="Archit Hulsurkar">
+      </div>
+      <h1 class="hero-name">Archit Hulsurkar</h1>
       <p class="hero-info">CS @ CSU Monterey Bay · Expected May 2027</p>
       <p class="hero-contact">831-224-6678 · archit.3572@gmail.com</p>
       <div class="hero-links">
@@ -385,7 +343,7 @@
         <a href="https://www.linkedin.com/in/archit-hulsurkar-231023280/" target="_blank">LinkedIn</a>
         <a href="mailto:archit.3572@gmail.com">Email</a>
       </div>
-      <div class="scroll-hint"><span>↓</span> Scroll</div>
+      <div class="scroll-hint">↓ Scroll</div>
     </section>
 
     <!-- Skills -->
@@ -509,32 +467,5 @@
       <a href="https://www.linkedin.com/in/archit-hulsurkar-231023280/" target="_blank">LinkedIn</a>
     </div>
   </footer>
-
-  <script>
-    // Animate name
-    const name = "Archit Hulsurkar";
-    const nameEl = document.getElementById('name');
-    
-    name.split('').forEach((char, i) => {
-      const span = document.createElement('span');
-      span.className = 'letter';
-      span.style.animationDelay = `${i * 0.05}s`;
-      span.textContent = char === ' ' ? '\u00A0' : char;
-      nameEl.appendChild(span);
-    });
-
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, i * 100);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.project, .exp, .skills-grid').forEach(el => observer.observe(el));
-  </script>
 </body>
 </html>
