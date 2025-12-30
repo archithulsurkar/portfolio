@@ -39,6 +39,157 @@
       color: var(--text-main);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background Doodles */
+    .bg-doodles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .doodle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+    }
+
+    .doodle-1 {
+      width: 600px;
+      height: 600px;
+      background: linear-gradient(135deg, #CC785C 0%, #E6A890 100%);
+      top: -200px;
+      right: -200px;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .doodle-2 {
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(135deg, #E6E3DD 0%, #D4CFC7 100%);
+      bottom: -100px;
+      left: -100px;
+      animation: float 15s ease-in-out infinite reverse;
+    }
+
+    .doodle-3 {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, #CC785C 0%, #B8654A 100%);
+      top: 50%;
+      left: -150px;
+      animation: float 18s ease-in-out infinite;
+    }
+
+    .doodle-4 {
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, #E6E3DD 0%, #F5F0EA 100%);
+      bottom: 20%;
+      right: -150px;
+      animation: float 22s ease-in-out infinite reverse;
+    }
+
+    /* Decorative Shapes */
+    .shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .shape {
+      position: absolute;
+      border: 2px solid var(--primary);
+    }
+
+    .shape-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      top: 15%;
+      right: 15%;
+      animation: rotate 30s linear infinite;
+    }
+
+    .shape-square {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      bottom: 30%;
+      left: 10%;
+      animation: rotate 25s linear infinite reverse;
+    }
+
+    .shape-triangle {
+      width: 0;
+      height: 0;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+      border-bottom: 70px solid var(--primary);
+      border: none;
+      top: 40%;
+      right: 20%;
+      opacity: 0.1;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .shape-triangle::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+      border-bottom: 70px solid var(--primary);
+      top: 0;
+      left: -40px;
+    }
+
+    /* Dots Pattern */
+    .dots {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.08;
+      pointer-events: none;
+      background-image: radial-gradient(circle, var(--primary) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      33% {
+        transform: translate(30px, -30px) scale(1.1);
+      }
+      66% {
+        transform: translate(-20px, 20px) scale(0.9);
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     a {
@@ -693,6 +844,24 @@
   </style>
 </head>
 <body>
+  <!-- Background Doodles -->
+  <div class="bg-doodles">
+    <div class="doodle doodle-1"></div>
+    <div class="doodle doodle-2"></div>
+    <div class="doodle doodle-3"></div>
+    <div class="doodle doodle-4"></div>
+  </div>
+
+  <!-- Decorative Shapes -->
+  <div class="shapes">
+    <div class="shape shape-circle"></div>
+    <div class="shape shape-square"></div>
+    <div class="shape-triangle"></div>
+  </div>
+
+  <!-- Dots Pattern -->
+  <div class="dots"></div>
+
   <!-- Progress Bar -->
   <div class="progress-bar"></div>
 
